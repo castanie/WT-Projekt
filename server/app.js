@@ -21,12 +21,16 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve('./public/dist/app/index.html'))
 })
 
-app.get('/menuCategories', (req, res) => {
+app.get('/menu/categories', (req, res) => {
   res.send('Categories.')
 })
 
-app.get('/menuItems', (req, res) => {
+app.get('/menu/categories/:category/items', (req, res) => {
   res.send('Items.')
+})
+
+app.post('/order', (req, res) => {
+  // res.send('Payment redirection...')
 })
 
 app.listen(port, () => {
