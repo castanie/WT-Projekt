@@ -1,11 +1,12 @@
 const express = require('express')
+const path = require('path')
 const compression = require('compression')
 const pg = require('pg')
 
 const app = express()
 const port = 3000
 
-app.use(express.static('public'))
+app.use(express.static('./public/dist/app'))
 app.use(compression());
 
 const pool = new pg.Pool({
@@ -17,7 +18,7 @@ const pool = new pg.Pool({
 });
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.sendFile(path.resolve('./public/dist/app/index.html'))
 })
 
 app.get('/menuCategories', (req, res) => {
