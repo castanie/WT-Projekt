@@ -1,10 +1,12 @@
 const express = require('express')
+const compression = require('compression')
 const pg = require('pg')
 
 const app = express()
 const port = 3000
 
 app.use(express.static('public'))
+app.use(compression());
 
 const pool = new pg.Pool({
   user: 'postgres',
