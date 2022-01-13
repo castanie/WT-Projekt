@@ -22,11 +22,15 @@ app.get('/', (req, res) => {
 })
 
 app.get('/menu/categories', (req, res) => {
-  res.send('Categories.')
+  pool.query('SELECT * FROM menu_categories').then((data) => {
+    res.status(200).send(data.rows)
+  })
 })
 
-app.get('/menu/categories/:category/items', (req, res) => {
-  res.send('Items.')
+app.get('/menu/categories/:category', (req, res) => {
+  pool.query('SELECT * FROM menu_items WHERE category = $1', [ req.params.category ]).then((data) => {
+    res.status(200).send(data.rows)
+  })
 })
 
 app.post('/order', (req, res) => {
