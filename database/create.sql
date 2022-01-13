@@ -1,7 +1,8 @@
 CREATE TABLE menu_categories(
 	categoryId SERIAL,
 	title TEXT,
-	description TEXT
+	description TEXT,
+	CONSTRAINT menu_categories_pk PRIMARY (categoryId)
 );
 
 INSERT INTO menu_categories VALUES (DEFAULT, 'Pizza', 'Traditional Italian pizza made with love from our professional pizza baker Claudio. All pizzas are prepared in a traditional stone oven.');
@@ -15,7 +16,8 @@ CREATE TABLE menu_items(
     price MONEY,
 	category TEXT,
 	allergens TEXT,
-	status BOOLEAN
+	status BOOLEAN,
+	CONSTRAINT menu_items_pk PRIMARY (itemId)
 );
 
 INSERT INTO menu_items VALUES(1, 'Pizza Margherita', 'Everyone knows and loves it – pizza margherita is a universally praised pizza for a reason. Originating in Naples, the margherita pizza has an interesting history supposedly rooted in a visit by Queen Margherita to Naples. The iconic pizza margherita is also known for representing the colours of the Italian flag: red tomato sauce, white mozzarella, and green basil. The combination of these ingredients creates a delicious pizza which has withstood the test of time', 6.80, '1, 3', 'A, B, C', TRUE);
@@ -28,3 +30,22 @@ INSERT INTO menu_items VALUES(7, 'Lasagne al Forno Classico', 'Classical lasagne
 INSERT INTO menu_items VALUES(8, 'Vesuvio al Ragù di Salsiccia', 'Vesuvio is a short pasta named for the famous volcano of the same name in Campania. The twists and turns of this short pasta make it perfect for catching the chunky bits of tomato and sausage in this Neapolitan-style ragù.', 10.80, '2', 'A, B, C, D, E, F', TRUE);
 INSERT INTO menu_items VALUES(9, 'Bucatini all`Amatriciana', 'Named for the town of Amatrice, located about an hour northeast of Roma, this simple dish combines sweet and tangy tomato sauce with rich guanciale (cured pork jowl) and sharp Pecorino Romano DOP cheese, with a spicy kick from peperoncini, or dried chili flakes. The best part? The hollow bucatini make each bite extra saucy.', 10.80, '2', 'A, B, C, D, E', TRUE);
 INSERT INTO menu_items VALUES(10, 'Spaghetti alle Vongole', 'Briny clams, white wine, garlic, and peperoncino create a light yet intensely flavorful sauce in this classic Neapolitan spaghetti dish. Look for the freshest clams possible (check with our fishmongers at your local Eataly for a recommendation), and high-quality, bronze-extruded pasta – the coarse texture will help the sauce cling to each strand.', 10.80, '2, 3', 'A, B, C, D, E, F, G, H', TRUE);
+
+
+-- EXTENSION TABLES:
+
+CREATE TABLE allergens(
+	allergenId INT,
+	title TEXT,
+	description TEXT
+);
+
+CREATE TABLE menu_item_categories(
+	itemId INT,
+	categoryId TEXT
+);
+
+CREATE TABLE menu_item_allergens(
+	itemId INT,
+	allergenId TEXT
+);
