@@ -1,2 +1,5 @@
+# compiled output
+/public/dist
+
 # dependencies
 /node_modules
