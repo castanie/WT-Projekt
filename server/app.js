@@ -2,24 +2,24 @@ const express = require('express')
 const path = require('path')
 const compression = require('compression')
 const pg = require('pg')
+// const cors = require('cors')
 
 const app = express()
 const port = 3000
 
 app.use(express.static('./public/dist/app'))
-app.use(compression());
+app.use(compression())
+// app.use(cors())
 
 const pool = new pg.Pool({
-  user: 'postgres',
+  user: 'daneg',
   password: 'password',
   host: 'localhost',
   port: 5432,
   database: 'postgres'
 });
 
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve('./public/dist/app/index.html'))
-})
+// API Routes:
 
 app.get('/menu/categories', (req, res) => {
   pool.query('SELECT * FROM menu_categories').then((data) => {
@@ -35,6 +35,12 @@ app.get('/menu/categories/:category', (req, res) => {
 
 app.post('/order', (req, res) => {
   // res.send('Payment redirection...')
+})
+
+// Default:
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve('./public/dist/app/index.html'))
 })
 
 app.listen(port, () => {
