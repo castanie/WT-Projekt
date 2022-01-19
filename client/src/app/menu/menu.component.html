@@ -1,0 +1,40 @@
+<!-- Toolbar -->
+
+<p>
+    <mat-toolbar color="theme">
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon" aria-label="Ask staff for help">
+        <mat-icon>sentiment_very_satisfied</mat-icon>
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Browse orders">
+        <mat-icon>shopping_bag</mat-icon>
+      </button>
+    </mat-toolbar>
+  </p>
+  
+  <!-- Categories -->
+  
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="{{tab}}" *ngFor="let tab of tabs">
+      <!-- Cards -->
+            <mat-card class="item-card" *ngFor="let item of items">
+              <mat-card-header>
+                <mat-card-title>{{item}}</mat-card-title>
+                <mat-card-subtitle>{{price}}</mat-card-subtitle>
+              </mat-card-header>
+              <img mat-card-image src="https://dierezepte.com/wp-content/uploads/2019/09/Pizza-Margherita-1300x651.jpg"
+                alt="Photo of Food">
+              <mat-card-content>
+                <p>
+                  {{desc}}
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <button mat-button>DETAILS</button>
+                <button mat-button>ORDER</button>
+              </mat-card-actions>
+            </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+  
+  <!-- Footer -->

@@ -13,9 +13,14 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { MenuComponent } from './menu/menu.component';
+import { OrderComponent } from './order/order.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
