@@ -1,8 +1,7 @@
 CREATE TABLE menu_categories(
-	categoryId SERIAL,
+	categoryId SERIAL PRIMARY KEY,
 	title TEXT,
-	description TEXT,
-	CONSTRAINT menu_categories_pk PRIMARY (categoryId)
+	description TEXT
 );
 
 INSERT INTO menu_categories VALUES (DEFAULT, 'Pizza', 'Traditional Italian pizza made with love from our professional pizza baker Claudio. All pizzas are prepared in a traditional stone oven.');
@@ -10,14 +9,13 @@ INSERT INTO menu_categories VALUES (DEFAULT, 'Pasta', 'All pasta is 100% hand-ma
 INSERT INTO menu_categories VALUES (DEFAULT, 'Weekly Specials', 'Explore new dishes and promotions every week!');
 
 CREATE TABLE menu_items(
-    itemId SERIAL,
+    itemId SERIAL PRIMARY KEY,
 	title TEXT,
 	description TEXT,
     price MONEY,
 	category TEXT,
 	allergens TEXT,
-	status BOOLEAN,
-	CONSTRAINT menu_items_pk PRIMARY (itemId)
+	status BOOLEAN
 );
 
 INSERT INTO menu_items VALUES(1, 'Pizza Margherita', 'Everyone knows and loves it – pizza margherita is a universally praised pizza for a reason. Originating in Naples, the margherita pizza has an interesting history supposedly rooted in a visit by Queen Margherita to Naples. The iconic pizza margherita is also known for representing the colours of the Italian flag: red tomato sauce, white mozzarella, and green basil. The combination of these ingredients creates a delicious pizza which has withstood the test of time', 6.80, '1, 3', 'A, B, C', TRUE);
@@ -35,7 +33,7 @@ INSERT INTO menu_items VALUES(10, 'Spaghetti alle Vongole', 'Briny clams, white 
 -- EXTENSION TABLES:
 
 CREATE TABLE allergens(
-	allergenId INT,
+	allergenId INT PRIMARY KEY,
 	title TEXT,
 	description TEXT
 );

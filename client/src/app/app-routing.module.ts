@@ -6,7 +6,8 @@ import { OrderComponent } from './order/order.component';
 
 const routes: Routes = [
   { path: 'menu', component: MenuComponent },
-  { path: 'order', component: OrderComponent }
+  { path: 'order', component: OrderComponent },
+  { path: '', redirectTo: 'menu', pathMatch: 'full' }
 ];
 
 @NgModule({

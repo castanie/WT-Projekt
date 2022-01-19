@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MenuCategory } from '../model/menu_categories.model';
+import { MenuItem } from '../model/menu_item.model';
+
+import { MenuService } from './menu.service';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -7,15 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  title = "";
-  desc = "";
-  price = "";
-  tabs = [];
-  items = [];
+  menuCategories!: MenuCategory[];
+  menuItems!: MenuItem[];
 
-  constructor() { }
+  constructor(private menuService: MenuService) { }
 
   ngOnInit(): void {
+    this.menuService.getAllCategories().subscribe((categories) => { this.menuCategories = categories; console.log(this.menuCategories); });
+    this.menuService.getAllItems("1").subscribe((items) => { this.menuItems = items; console.log(this.menuItems); });
   }
 
 }
