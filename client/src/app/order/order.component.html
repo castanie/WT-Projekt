@@ -2,12 +2,33 @@
 
 <p>
   <mat-toolbar color="theme">
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon" aria-label="Ask staff for help">
+    <span style="flex: 1 1 auto;"></span>
+    <button mat-icon-button aria-label="Ask staff for help">
       <mat-icon>sentiment_very_satisfied</mat-icon>
     </button>
-    <button routerLink="/menu" mat-icon-button class="example-icon" aria-label="Browse menu">
+    <button mat-icon-button routerLink="/menu" aria-label="Browse menu">
       <mat-icon>restaurant_menu</mat-icon>
     </button>
   </mat-toolbar>
 </p>
+
+<div>
+  <!-- Cards -->
+  <mat-card class="item-card" style="margin: 8 4; padding: 8 4;" *ngFor="let item of orderItems">
+    <mat-card-header>
+      <mat-card-title>{{item}}</mat-card-title>
+      <mat-card-subtitle>{{item}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://dierezepte.com/wp-content/uploads/2019/09/Pizza-Margherita-1300x651.jpg"
+      alt="Photo of Food">
+    <mat-card-content>
+      <p>
+        {{item}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>DETAILS</button>
+      <button mat-button>ORDER</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
