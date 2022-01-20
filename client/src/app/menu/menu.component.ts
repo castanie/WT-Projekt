@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 
 import { MenuCategory } from '../model/menu_categories.model';
 import { MenuItem } from '../model/menu_item.model';
@@ -18,8 +18,12 @@ export class MenuComponent implements OnInit {
   constructor(private menuService: MenuService) { }
 
   ngOnInit(): void {
-    this.menuService.getAllCategories().subscribe((categories) => { this.menuCategories = categories; console.log(this.menuCategories); });
-    this.menuService.getAllItems("1").subscribe((items) => { this.menuItems = items; console.log(this.menuItems); });
+    this.menuService.getAllCategories().subscribe((categories) => { this.menuCategories = categories; });
+    this.menuService.getAllItems("1").subscribe((items) => { this.menuItems = items; });
+  }
+
+  handleTabChange(index: EventEmitter<number>): void {
+    // this.menuService.getAllItems(...).subscribe((items) => { this.menuItems = items; });
   }
 
 }
