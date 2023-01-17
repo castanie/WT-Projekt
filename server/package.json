@@ -1,19 +1,19 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/castanie/WT-Projekt.git"
-  },
-  "author": "Daniel Egger <dan.egg@outlook.com> (https://github.com/castanie)",
-  "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://github.com/castanie/WT-Projekt/issues"
-  },
-  "homepage": "https://github.com/castanie/WT-Projekt#readme"
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/castanie/WT-Projekt.git"
+    },
+    "author": "Daniel Egger <dan.egg@outlook.com> (https://github.com/castanie)",
+    "license": "UNLICENSED",
+    "bugs": {
+        "url": "https://github.com/castanie/WT-Projekt/issues"
+    },
+    "homepage": "https://github.com/castanie/WT-Projekt#readme"
 }
