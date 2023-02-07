@@ -1,0 +1,28 @@
+### TEST ~ API: ###
+GET /api/test HTTP/1.1
+Host: localhost:3000
+
+### DATA ~ FILMS: ###
+GET /api/films HTTP/1.1
+Host: localhost:3000
+
+
+### AUTH ~ SIGN-UP: ###
+POST /api/sign-up HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+
+{
+    "username": "Scooby!",
+    "password": "Doo!" 
+}
+
+### AUTH ~ SIGN-IN: ###
+POST /api/sign-in HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+
+{
+    "username": "admin",
+    "password": "admin" 
+}
