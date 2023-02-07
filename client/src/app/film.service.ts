@@ -1,7 +1,12 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, of } from "rxjs";
 import { Film } from "./film.model";
+
+const FILM_API = "http://localhost:3000/api/auth/";
+const HTTP_OPTIONS = {
+    headers: new HttpHeaders({ "Content-Type": "application/json" }),
+};
 
 @Injectable({
     providedIn: "root",
@@ -9,9 +14,9 @@ import { Film } from "./film.model";
 export class FilmService {
     constructor(private http: HttpClient) {}
 
-    getFilms(): Observable<Film[]> {
+    public getFilms(): Observable<Film[]> {
         return this.http
-            .get<Film[]>("url")
+            .get<Film[]>(FILM_API, HTTP_OPTIONS)
             .pipe(catchError(this.handleError<Film[]>([])));
     }
 
