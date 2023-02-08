@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { catchError, Observable, of } from "rxjs";
 import { Film } from "./film.model";
 
-const FILM_API = "http://localhost:3000/api/auth/";
+const FILM_API = "http://localhost:3000/api/films/";
 const HTTP_OPTIONS = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
 };
@@ -16,8 +16,14 @@ export class FilmService {
 
     public getFilms(): Observable<Film[]> {
         return this.http
-            .get<Film[]>(FILM_API, HTTP_OPTIONS)
+            .get<Film[]>(`${FILM_API}`, HTTP_OPTIONS)
             .pipe(catchError(this.handleError<Film[]>([])));
+    }
+
+    public getFilm(id: number): Observable<Film> {
+        return this.http
+            .get<Film>(`${FILM_API}/${id}`, HTTP_OPTIONS)
+            .pipe(catchError(this.handleError<Film>()));
     }
 
     private handleError<T>(result?: T) {
