@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { FilmListComponent } from "./film-list.component";
+import { FilmGridComponent } from "./film-grid.component";
 
-describe("FilmListComponent", () => {
-    let component: FilmListComponent;
-    let fixture: ComponentFixture<FilmListComponent>;
+describe("FilmGridComponent", () => {
+    let component: FilmGridComponent;
+    let fixture: ComponentFixture<FilmGridComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [FilmListComponent],
+            declarations: [FilmGridComponent],
         }).compileComponents();
 
-        fixture = TestBed.createComponent(FilmListComponent);
+        fixture = TestBed.createComponent(FilmGridComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

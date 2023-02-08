@@ -3,12 +3,13 @@ import { Film } from "src/app/film.model";
 import { FilmService } from "src/app/film.service";
 
 @Component({
-    selector: "app-film-list",
-    templateUrl: "./film-list.component.html",
-    styleUrls: ["./film-list.component.scss"],
+    selector: "app-film-grid",
+    templateUrl: "./film-grid.component.html",
+    styleUrls: ["./film-grid.component.scss"],
 })
-export class FilmListComponent implements OnInit {
-    protected films: Film[] = [];
+export class FilmGridComponent implements OnInit {
+    private sub: any;
+    protected films!: Film[];
 
     constructor(private filmService: FilmService) {}
 
@@ -16,8 +17,12 @@ export class FilmListComponent implements OnInit {
         this.getFilms();
     }
 
+    ngOnDestroy(): void {
+        this.sub.unsubscribe();
+    }
+
     getFilms(): void {
-        this.filmService
+        this.sub = this.filmService
             .getFilms()
             .subscribe((films: Film[]) => (this.films = films));
     }

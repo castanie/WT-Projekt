@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FilmListComponent } from "./film-list/film-list.component";
+import { FilmGridComponent } from "./film-grid/film-grid.component";
 import { FilmReelComponent } from "./film-reel/film-reel.component";
 import { HomePageComponent } from "./home-page.component";
 
 @NgModule({
-    declarations: [FilmListComponent, FilmReelComponent, HomePageComponent],
+    declarations: [FilmGridComponent, FilmReelComponent, HomePageComponent],
     imports: [CommonModule],
 })
 export class HomePageModule {}
