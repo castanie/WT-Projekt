@@ -57,6 +57,7 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
+                        "ssl": true,
                         "proxyConfig": "proxy.conf.json"
                     },
                     "configurations": {
@@ -90,6 +91,6 @@
         }
     },
     "cli": {
-      "analytics": false
+        "analytics": false
     }
 }

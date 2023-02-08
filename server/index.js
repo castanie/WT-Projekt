@@ -1,15 +1,17 @@
 const express = require("express");
 
 // ...:
-const body = require("body-parser");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const pg = require("pg");
 
 // ...:
 const app = express();
+app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(cors());
-app.use(body.json());
 const pool = new pg.Pool({
     host: "localhost",
     user: "cinema",
@@ -18,9 +20,9 @@ const pool = new pg.Pool({
 
 const port = 3000;
 
-/////////////
-// Routes: //
-/////////////
+////////////////////
+// Public Routes: //
+////////////////////
 
 app.get("/api/test", (req, res) => {
     pool.query("SELECT * FROM _")
@@ -58,11 +60,11 @@ app.post("/api/sign-up", (req, res) => {
         .then((result) => {
             res.json({
                 message: `Completed SIGN-UP: <<${username}>> : <<${password}>>.`,
-                token: jwt.sign("payload", "secret"),
+                token: jwt.sign(username, "secret"),
             });
         })
         .catch((error) => {
-            console.error("Failed whatever.");
+            console.error(`Failed SIGN-UP: <<${error}>>.`);
         });
 });
 
@@ -81,9 +83,26 @@ app.post("/api/sign-in", (req, res) => {
             });
         })
         .catch((error) => {
-            console.error("Failed whatever.");
+            console.error(`Failed SIGN-IN: <<${error}>>.`);
         });
 });
+
+/////////////////////
+// Private Routes: //
+/////////////////////
+
+app.use("/api/auth", (req, res, next) => {
+    console.log("Cookies:", req.cookies);
+    next();
+});
+
+app.get("/api/auth", (req, res) => {
+    res.cookie("token", jwt.sign("This is the payload.", "key")).json();
+});
+
+//////////////////
+// Other Logic: //
+//////////////////
 
 // ...:
 app.listen(port, () => {
