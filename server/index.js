@@ -1,6 +1,7 @@
 const express = require("express");
 
 // ...:
+const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -18,7 +19,10 @@ const pool = new pg.Pool({
     database: "cinema",
 });
 
+// ...:
 const port = 3000;
+const jwt_secret = require("crypto").randomBytes(256).toString("hex");
+const jwt_options = { algorithm: "HS256" };
 
 ////////////////////
 // Public Routes: //
@@ -53,14 +57,19 @@ app.post("/api/sign-up", (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
 
-    pool.query(
-        "SELECT COUNT(*) FROM users WHERE username = '$1' AND password = '$2'",
-        [username, password]
-    )
+    bcrypt
+        .hash(password)
+        .then((passhash) => {
+            return pool.query("INSERT INTO users VALUES ($1, $2)", [
+                username,
+                passhash,
+            ]);
+        })
         .then((result) => {
+            console.log(result);
             res.json({
                 message: `Completed SIGN-UP: <<${username}>> : <<${password}>>.`,
-                token: jwt.sign(username, "secret"),
+                token: jwt.sign(username, jwt_secret, jwt_options),
             });
         })
         .catch((error) => {
@@ -72,14 +81,19 @@ app.post("/api/sign-in", (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
 
-    pool.query(
-        "SELECT COUNT(*) FROM users WHERE username = $1 AND password = $2",
-        [username, password]
-    )
+    bcrypt
+        .hash(password)
+        .then((passhash) => {
+            return pool.query(
+                "SELECT COUNT(*) FROM users WHERE username = $1 AND password = $2",
+                [username, passhash]
+            );
+        })
         .then((result) => {
+            console.log(result);
             res.json({
                 message: `Completed SIGN-IN: <<${username}>> : <<${password}>>.`,
-                token: jwt.sign("payload", "secret"),
+                token: jwt.sign(username, jwt_secret, jwt_options),
             });
         })
         .catch((error) => {
@@ -97,7 +111,10 @@ app.use("/api/auth", (req, res, next) => {
 });
 
 app.get("/api/auth", (req, res) => {
-    res.cookie("token", jwt.sign("This is the payload.", "key")).json();
+    res.cookie(
+        "token",
+        jwt.sign("This is the payload.", jwt_secret, jwt_options)
+    ).json();
 });
 
 //////////////////
@@ -107,4 +124,6 @@ app.get("/api/auth", (req, res) => {
 // ...:
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
+    console.log(`Signing secret is <<${jwt_secret}>>.`);
+    console.log(`Signing algorithm is <<${jwt_options.algorithm}>>.`);
 });
