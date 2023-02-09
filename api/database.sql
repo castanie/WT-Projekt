@@ -9,7 +9,7 @@
 DROP TABLE cinemas CASCADE;
 DROP TABLE seats CASCADE;
 DROP TABLE films CASCADE;
-DROP TABLE screenings CASCADE;
+DROP TABLE shows CASCADE;
 DROP TABLE users CASCADE;
 DROP TABLE tickets CASCADE;
 DROP TABLE ratings CASCADE;
@@ -46,14 +46,14 @@ INSERT INTO films VALUES (DEFAULT, 'The Banshees of Inisherin', '...', '01:55:00
 INSERT INTO films VALUES (DEFAULT, 'The Menu', '...', '01:48:00', '2022-11-17', 16);
 
 -------------------------
--- SCREENINGS (TABLE): --
+-- SHOWS (TABLE): --
 -------------------------
 
-CREATE TABLE screenings (id SERIAL, cinema INTEGER REFERENCES cinemas(id), film INTEGER REFERENCES films(id), start TIME(0), cancelled BOOLEAN, PRIMARY KEY (id));
-INSERT INTO screenings VALUES (DEFAULT, 1, 1, now() + '01:00:00', FALSE);
-INSERT INTO screenings VALUES (DEFAULT, 2, 2, now() + '03:00:00', FALSE);
-INSERT INTO screenings VALUES (DEFAULT, 1, 1, now() + '04:00:00', FALSE);
-INSERT INTO screenings VALUES (DEFAULT, 2, 3, now() + '06:00:00', TRUE);
+CREATE TABLE shows (id SERIAL, cinema INTEGER REFERENCES cinemas(id), film INTEGER REFERENCES films(id), "date" DATE, "time" TIME(0), cancelled BOOLEAN, PRIMARY KEY (id));
+INSERT INTO shows VALUES (DEFAULT, 1, 1, now, now + '01:00:00', FALSE);
+INSERT INTO shows VALUES (DEFAULT, 2, 2, now, now + '03:00:00', FALSE);
+INSERT INTO shows VALUES (DEFAULT, 1, 1, now, now + '04:00:00', FALSE);
+INSERT INTO shows VALUES (DEFAULT, 2, 3, now, now + '06:00:00', TRUE);
 
 --------------------
 -- USERS (TABLE): --
@@ -68,7 +68,7 @@ INSERT INTO users VALUES ('user2', 'user2');
 -- TICKETS (TABLE): --
 ----------------------
 
-CREATE TABLE tickets (id SERIAL, "user" VARCHAR(63) REFERENCES users(username), screening INTEGER REFERENCES screenings(id), redeemed BOOLEAN, PRIMARY KEY (id));
+CREATE TABLE tickets (id SERIAL, "user" VARCHAR(63) REFERENCES users(username), show INTEGER REFERENCES shows(id), redeemed BOOLEAN, PRIMARY KEY (id));
 INSERT INTO tickets VALUES (DEFAULT, 'user1', 2, FALSE);
 INSERT INTO tickets VALUES (DEFAULT, 'user2', 3, FALSE);
 
