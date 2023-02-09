@@ -21,7 +21,7 @@ const pool = new pg.Pool({
 
 // ...:
 const port = 3000;
-const jwt_secret = require("crypto").randomBytes(256).toString("hex");
+const jwt_secret = require("crypto").randomBytes(32).toString("hex");
 const jwt_options = { algorithm: "HS256" };
 
 ////////////////////
@@ -29,9 +29,11 @@ const jwt_options = { algorithm: "HS256" };
 ////////////////////
 
 app.get("/api/test", (req, res) => {
-    pool.query("SELECT * FROM _")
+    pool.query("SELECT * FROM films")
         .then((result) => {
-            res.json({
+            res.header({
+                "Strict-Transport-Security": "max-age=31536000",
+            }).json({
                 message: result.rows[0].value,
             });
         })
@@ -58,7 +60,7 @@ app.post("/api/sign-up", (req, res) => {
     let password = req.body.password;
 
     bcrypt
-        .hash(password)
+        .hash(password, 10)
         .then((passhash) => {
             return pool.query("INSERT INTO users VALUES ($1, $2)", [
                 username,
@@ -67,9 +69,14 @@ app.post("/api/sign-up", (req, res) => {
         })
         .then((result) => {
             console.log(result);
-            res.json({
+            res.header({
+                "Set-Cookie": `token=${jwt.sign(
+                    username,
+                    jwt_secret,
+                    jwt_options
+                )}`,
+            }).json({
                 message: `Completed SIGN-UP: <<${username}>> : <<${password}>>.`,
-                token: jwt.sign(username, jwt_secret, jwt_options),
             });
         })
         .catch((error) => {
@@ -82,7 +89,7 @@ app.post("/api/sign-in", (req, res) => {
     let password = req.body.password;
 
     bcrypt
-        .hash(password)
+        .hash(password, 10)
         .then((passhash) => {
             return pool.query(
                 "SELECT COUNT(*) FROM users WHERE username = $1 AND password = $2",
@@ -91,9 +98,14 @@ app.post("/api/sign-in", (req, res) => {
         })
         .then((result) => {
             console.log(result);
-            res.json({
+            res.header({
+                "Set-Cookie": `token=${jwt.sign(
+                    username,
+                    jwt_secret,
+                    jwt_options
+                )}`,
+            }).json({
                 message: `Completed SIGN-IN: <<${username}>> : <<${password}>>.`,
-                token: jwt.sign(username, jwt_secret, jwt_options),
             });
         })
         .catch((error) => {
@@ -111,10 +123,11 @@ app.use("/api/auth", (req, res, next) => {
 });
 
 app.get("/api/auth", (req, res) => {
-    res.cookie(
-        "token",
-        jwt.sign("This is the payload.", jwt_secret, jwt_options)
-    ).json();
+    if (jwt.verify(req.cookies.token, jwt_secret)) {
+        res.status(200).send();
+    } else {
+        res.status(401).send();
+    }
 });
 
 //////////////////
