@@ -4,9 +4,12 @@ import { FilmPageComponent } from "./film-page/film-page.component";
 import { HomePageComponent } from "./home-page/home-page.component";
 
 const routes: Routes = [
-    { path: "/", redirectTo: "/films/" },
-    { path: "/films/", component: HomePageComponent },
-    { path: "/films/:id/", component: FilmPageComponent },
+    { path: "", redirectTo: "films", pathMatch: "full" },
+    {
+        path: "films",
+        component: HomePageComponent,
+        children: [{ path: ":id", component: FilmPageComponent }],
+    },
 ];
 
 @NgModule({
