@@ -8,6 +8,10 @@ Host: localhost:3000
 GET /api/films HTTP/1.1
 Host: localhost:3000
 
+### TEST ~ FILMS: ###
+GET /api/films/aftersun HTTP/1.1
+Host: localhost:3000
+
 # ---------------------------
 
 ### TEST ~ SIGN-UP: ###

@@ -40,10 +40,16 @@ INSERT INTO seats VALUES (2, 2, 2, TRUE, FALSE);
 -- FILMS (TABLE): --
 --------------------
 
-CREATE TABLE films (id SERIAL, title TEXT, description TEXT, duration INTERVAL HOUR TO MINUTE, release DATE, rating SMALLINT, PRIMARY KEY (id));
-INSERT INTO films VALUES (DEFAULT, 'Babylon', '...', '03:10:00', '2023-01-19', 18);
-INSERT INTO films VALUES (DEFAULT, 'The Banshees of Inisherin', '...', '01:55:00', '2023-01-05', 14);
-INSERT INTO films VALUES (DEFAULT, 'The Menu', '...', '01:48:00', '2022-11-17', 16);
+CREATE TABLE films (id TEXT, title TEXT, synopsis TEXT, runtime INTERVAL HOUR TO MINUTE, release DATE, rating SMALLINT, PRIMARY KEY (id));
+INSERT INTO films VALUES ('aftersun', 'Aftersun', 'Sophie reflects on the shared joy and private melancholy of a holiday she took with her father twenty years earlier. Memories real and imagined fill the gaps between miniDV footage as she tries to reconcile the father she knew with the man she didn''t.', '01:42:00', '2022-12-15', 12);
+INSERT INTO films VALUES ('avatar-the-way-of-water', 'Avatar: The Way of Water', 'Set more than a decade after the events of the first film, learn the story of the Sully family (Jake, Neytiri, and their kids), the trouble that follows them, the lengths they go to keep each other safe, the battles they fight to stay alive, and the tragedies they endure.', '03:12:00', '2022-12-14', 12);
+INSERT INTO films VALUES ('babylon', 'Babylon', 'A tale of outsized ambition and outrageous excess, tracing the rise and fall of multiple characters in an era of unbridled decadence and depravity during Hollywood''s transition from silent films and to sound films in the late 1920s.', '03:10:00', '2023-01-19', 18);
+INSERT INTO films VALUES ('knock-at-the-cabin', 'Knock at the Cabin', 'While vacationing at a remote cabin, a young girl and her two fathers are taken hostage by four armed strangers who demand that the family make an unthinkable choice to avert the apocalypse. With limited access to the outside world, the family must decide what they believe before all is lost.', '01:40:00', '2023-02-09', 16);
+INSERT INTO films VALUES ('puss-in-boots-the-last-wish', 'Puss in Boots: The Last Wish', 'Puss in Boots discovers that his passion for adventure has taken its toll: He has burned through eight of his nine lives, leaving him with only one life left. Puss sets out on an epic journey to find the mythical Last Wish and restore his nine lives.', '01:43:00', '2022-12-22', 6);
+INSERT INTO films VALUES ('the-banshees-of-inisherin', 'The Banshees of Inisherin', 'Two lifelong friends find themselves at an impasse when one abruptly ends their relationship, with alarming consequences for both of them.', '01:55:00', '2023-01-05', 14);
+INSERT INTO films VALUES ('the-menu', 'The Menu', 'A young couple travels to a remote island to eat at an exclusive restaurant where the chef has prepared a lavish menu, with some shocking surprises.', '01:48:00', '2022-11-17', 16);
+INSERT INTO films VALUES ('the-whale', 'The Whale', 'A reclusive English teacher suffering from severe obesity attempts to reconnect with his estranged teenage daughter for one last chance at redemption.', '01:57:00', '2023-04-27', 16);
+-- INSERT INTO films VALUES ('title', 'Title', 'Synopsis', '01:30:00', '2023-01-01', 0);
 
 -------------------------
 -- SHOWS (TABLE): --
