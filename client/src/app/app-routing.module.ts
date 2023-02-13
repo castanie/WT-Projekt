@@ -5,11 +5,8 @@ import { HomePageComponent } from "./home-page/home-page.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "films", pathMatch: "full" },
-    {
-        path: "films",
-        component: HomePageComponent,
-        children: [{ path: ":id", component: FilmPageComponent }],
-    },
+    { path: "films", component: HomePageComponent },
+    { path: "films/:id", component: FilmPageComponent },
 ];
 
 @NgModule({

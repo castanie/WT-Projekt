@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { catchError, Observable, of } from "rxjs";
 import { Show } from "./show.model";
 
-const SHOW_API = "http://localhost:3000/api/shows/";
+const SHOW_API = "http://localhost:3000/api/shows";
 const HTTP_OPTIONS = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
 };

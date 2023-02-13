@@ -1,8 +1,8 @@
 export interface Film {
-    id: number;
+    id: string;
     title?: string;
-    description?: string;
-    duration?: string;
+    synopsis?: string;
+    runtime?: string;
     release?: string;
     rating?: number;
 }

@@ -13,6 +13,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
+app.use(express.static("static"));
 const pool = new pg.Pool({
     host: "localhost",
     user: "cinema",
@@ -45,10 +46,17 @@ app.get("/api/test", (req, res) => {
 app.get("/api/films", (req, res) => {
     pool.query("SELECT * FROM films")
         .then((result) => {
-            console.log(result.rows);
-            res.json({
-                queried: result.rows,
-            });
+            res.json(result.rows);
+        })
+        .catch((error) => {
+            console.error("Failed whatever.");
+        });
+});
+
+app.get("/api/films/:id", (req, res) => {
+    pool.query("SELECT * FROM films WHERE id = $1 LIMIT 1", [req.params.id])
+        .then((result) => {
+            res.json(result.rows[0]);
         })
         .catch((error) => {
             console.error("Failed whatever.");

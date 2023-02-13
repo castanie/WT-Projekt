@@ -1,8 +1,13 @@
-<div>
-    <div class="app-film-grid-card" *ngFor="let film of this.films">
-        <!-- <img src="{{ film.image }}" /> -->
-        <!-- <h3>{{ film.title }}</h3> -->
-        <!-- <p>{{ film.synopsis }}</p> -->
-        Just a test.
-    </div>
+<div class="app-film-grid">
+    <a
+        class="app-film-grid-card"
+        [routerLink]="[film.id]"
+        *ngFor="let film of this.films"
+    >
+        <img
+            src="http://localhost:3000/api/films/aftersun/Poster.jfif"
+            alt="Poster"
+        />
+        <h3>{{ film.title }}</h3>
+    </a>
 </div>
