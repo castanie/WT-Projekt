@@ -14,9 +14,9 @@ const HTTP_OPTIONS = {
 export class ShowService {
     constructor(private http: HttpClient) {}
 
-    public getShows(): Observable<Show[]> {
+    public getShows(film: string, date: string): Observable<Show[]> {
         return this.http
-            .get<Show[]>(`${SHOW_API}`, HTTP_OPTIONS)
+            .get<Show[]>(`${SHOW_API}?film=${film}&date=${date}`, HTTP_OPTIONS)
             .pipe(catchError(this.handleError<Show[]>([])));
     }
 
