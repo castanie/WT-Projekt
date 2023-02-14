@@ -4,6 +4,7 @@ import { BrowserModule } from "@angular/platform-browser";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { FilmPageModule } from "./film-page/film-page.module";
 import { HomePageModule } from "./home-page/home-page.module";
 
 @NgModule({
@@ -11,6 +12,7 @@ import { HomePageModule } from "./home-page/home-page.module";
     imports: [
         AppRoutingModule,
         BrowserModule,
+        FilmPageModule,
         HomePageModule,
         HttpClientModule,
     ],
