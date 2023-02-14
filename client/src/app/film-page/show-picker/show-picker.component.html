@@ -1,0 +1,18 @@
+<div class="show-picker">
+    <div class="show-picker-dates">
+        <h2
+            id="{{ getISODate(date) }}"
+            class="clickable"
+            (click)="onDate($event)"
+            *ngFor="let date of this.dates"
+        >
+            {{ getDate(date) }}
+        </h2>
+    </div>
+
+    <hr />
+
+    <div class="show-picker-times">
+        <h3 *ngFor="let show of this.shows">{{ show.time }}</h3>
+    </div>
+</div>

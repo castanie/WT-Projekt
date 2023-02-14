@@ -1,3 +1,20 @@
-<img src="http://localhost:3000/api/films/aftersun/Poster.jfif" alt="Poster" />
-<h1>{{ this.film.title }}</h1>
-<p>{{ this.film.synopsis }}</p>
+<div class="film-page-film">
+    <img
+        src="http://localhost:3000/api/films/{{ this.film.id }}/Poster.jfif"
+        alt="Poster"
+    />
+    <div class="film-page-details">
+        <h1>{{ this.film.title }}</h1>
+        <p>{{ this.film.synopsis }}</p>
+    </div>
+    <div class="film-page-reviews">
+        <h1>Reviews</h1>
+    </div>
+</div>
+
+<hr />
+
+<!-- ... -->
+
+<app-show-picker id="there"></app-show-picker>
+<app-seat-picker></app-seat-picker>

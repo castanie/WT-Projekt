@@ -1,0 +1,27 @@
+.show-picker {
+    border: 2px solid black;
+    padding: 1rem;
+}
+
+.show-picker-dates {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.show-picker-times {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+h2 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.5rem;
+    text-align: center;
+    border: 2px solid black;
+    margin: 1rem;
+    padding: 1rem;
+}
