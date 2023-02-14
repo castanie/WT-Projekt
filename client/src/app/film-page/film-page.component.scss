@@ -1,0 +1,19 @@
+.film-page-film {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 2rem;
+}
+
+.film-page-reviews {
+    border: 2px solid black;
+    padding-left: 1rem;
+    width: 300px;
+}
+
+img {
+    height: calc(100vh - 7.875rem);
+}
+
+p {
+    text-align: justify;
+}
