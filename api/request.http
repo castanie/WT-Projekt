@@ -14,6 +14,12 @@ Host: localhost:3000
 
 # ---------------------------
 
+### TEST ~ SHOWS: ###
+GET /api/shows?film=aftersun&date=2023-02-14 HTTP/1.1
+Host: localhost:3000
+
+# ---------------------------
+
 ### TEST ~ SIGN-UP: ###
 POST /api/sign-up HTTP/1.1
 Host: localhost:3000
@@ -32,6 +38,16 @@ Content-Type: application/json
 {
     "username": "Scooby!",
     "password": "Doo!" 
+}
+
+### TEST ~ SIGN-IN: ###
+POST /api/sign-in HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+
+{
+    "username": "Scooby!",
+    "password": "Delilah?" 
 }
 
 # ---------------------------

@@ -1,7 +1,6 @@
 export interface Seat {
-    cinema: number;
-    row: number;
-    col: number;
+    screen: number;
+    id: string;
     premium?: boolean;
     accessible?: boolean;
 }
