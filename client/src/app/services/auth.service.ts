@@ -2,7 +2,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, of } from "rxjs";
 
-const AUTH_API = "http://localhost:3000/api/auth";
+const AUTH_API = "http://localhost:4200/api/auth";
+const USERS_API = "http://localhost:4200/api/users";
 const HTTP_OPTIONS = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
 };
