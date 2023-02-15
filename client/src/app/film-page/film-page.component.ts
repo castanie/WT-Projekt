@@ -1,15 +1,14 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Film } from "../models/film.model";
-import { FilmService } from "../film.service";
+import { FilmService } from "../services/film.service";
 
 @Component({
     selector: "app-film-page",
     templateUrl: "./film-page.component.html",
     styleUrls: ["./film-page.component.scss"],
 })
-export class FilmPageComponent implements OnInit, OnDestroy {
-    private sub: any;
+export class FilmPageComponent implements OnInit {
     protected film!: Film;
 
     constructor(
@@ -18,16 +17,12 @@ export class FilmPageComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-        this.sub = this.route.params.subscribe((params) => {
+        this.route.params.subscribe((params) => {
             this.film = {
                 id: params["id"],
             };
         });
         this.getFilm();
-    }
-
-    ngOnDestroy(): void {
-        this.sub.unsubscribe();
     }
 
     getFilm(): void {

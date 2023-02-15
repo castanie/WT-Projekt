@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Film } from "src/app/models/film.model";
-import { FilmService } from "src/app/film.service";
+import { FilmService } from "src/app/services/film.service";
 
 @Component({
     selector: "app-film-grid",
@@ -8,7 +8,6 @@ import { FilmService } from "src/app/film.service";
     styleUrls: ["./film-grid.component.scss"],
 })
 export class FilmGridComponent implements OnInit {
-    private sub: any;
     protected films!: Film[];
 
     constructor(private filmService: FilmService) {}
@@ -17,12 +16,8 @@ export class FilmGridComponent implements OnInit {
         this.getFilms();
     }
 
-    ngOnDestroy(): void {
-        this.sub.unsubscribe();
-    }
-
     getFilms(): void {
-        this.sub = this.filmService
+        this.filmService
             .getFilms()
             .subscribe((films: Film[]) => (this.films = films));
     }

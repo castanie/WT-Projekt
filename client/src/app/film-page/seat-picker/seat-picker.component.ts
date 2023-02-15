@@ -1,15 +1,14 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Seat } from "src/app/seat.model";
-import { SeatService } from "src/app/seat.service";
+import { Seat } from "src/app/models/seat.model";
+import { SeatService } from "src/app/services/seat.service";
 
 @Component({
     selector: "app-seat-picker",
     templateUrl: "./seat-picker.component.html",
     styleUrls: ["./seat-picker.component.scss"],
 })
-export class SeatPickerComponent implements OnInit, OnDestroy {
-    private sub: any;
+export class SeatPickerComponent implements OnInit {
     protected seats!: Seat[];
 
     constructor(
@@ -18,18 +17,14 @@ export class SeatPickerComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-        this.sub = this.route.params.subscribe((params) => {
+        this.route.params.subscribe((params) => {
             this.seats = params["id"];
         });
         this.getSeats();
     }
 
-    ngOnDestroy(): void {
-        this.sub.unsubscribe();
-    }
-
     getSeats(): void {
-        this.sub = this.seatService
+        this.seatService
             .getSeats()
             .subscribe((seats: Seat[]) => (this.seats = seats));
     }

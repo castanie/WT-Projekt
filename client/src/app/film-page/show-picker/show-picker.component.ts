@@ -1,15 +1,14 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Show } from "src/app/show.model";
-import { ShowService } from "src/app/show.service";
+import { Show } from "src/app/models/show.model";
+import { ShowService } from "src/app/services/show.service";
 
 @Component({
     selector: "app-show-picker",
     templateUrl: "./show-picker.component.html",
     styleUrls: ["./show-picker.component.scss"],
 })
-export class ShowPickerComponent implements OnInit, OnDestroy {
-    private sub: any;
+export class ShowPickerComponent implements OnInit {
     protected film!: string;
     protected show!: Show;
     protected shows!: Show[];
@@ -23,7 +22,7 @@ export class ShowPickerComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
-        this.sub = this.route.params.subscribe((params) => {
+        this.route.params.subscribe((params) => {
             this.film = params["id"];
         });
         this.getShows();
@@ -31,12 +30,8 @@ export class ShowPickerComponent implements OnInit, OnDestroy {
         this.date = new Date().toISOString().slice(0, 10);
     }
 
-    ngOnDestroy(): void {
-        this.sub.unsubscribe();
-    }
-
     getShows(): void {
-        this.sub = this.showService
+        this.showService
             .getShows(this.film, this.date)
             .subscribe((shows: Show[]) => (this.shows = shows));
     }
