@@ -1,0 +1,10 @@
+<form>
+    <label for="username">Username:</label>
+    <input type="text" name="username" [(ngModel)]="username" />
+    <br />
+    <label for="password">Password:</label>
+    <input type="password" name="password" [(ngModel)]="password" />
+    <p>{{ this.message }}</p>
+    <button (click)="onClick()">Sign In</button>
+    <a [routerLink]="['/auth/sign-up']">Don't have an account yet?</a>
+</form>

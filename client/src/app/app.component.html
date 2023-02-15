@@ -1,8 +1,17 @@
 <nav>
-    <a class="logo" [routerLink]="['/']">CINEMON</a>
-    <a class="link" [routerLink]="['/']">Films</a>
-    <a class="link" [routerLink]="['/']">Sign In</a>
-    <a class="link" [routerLink]="['/']">Sign Up</a>
+    <div
+        *ngIf="this.authService.isSignedIn; then thenBlock; else elseBlock"
+    ></div>
+    <ng-template #thenBlock>
+        <a class="logo" [routerLink]="['/']">CINEMON</a>
+        <a class="link" [routerLink]="['/']">Films</a>
+    </ng-template>
+    <ng-template #elseBlock>
+        <a class="logo" [routerLink]="['/']">CINEMON</a>
+        <a class="link" [routerLink]="['/']">Films</a>
+        <a class="link" [routerLink]="['/auth/sign-in']">Sign In</a>
+        <a class="link" [routerLink]="['/auth/sign-up']">Sign Up</a>
+    </ng-template>
 </nav>
 
 <hr />

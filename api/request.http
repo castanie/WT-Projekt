@@ -21,7 +21,7 @@ Host: localhost:3000
 # ---------------------------
 
 ### TEST ~ SIGN-UP: ###
-POST /api/sign-up HTTP/1.1
+POST /api/users/sign-up HTTP/1.1
 Host: localhost:3000
 Content-Type: application/json
 
@@ -31,7 +31,7 @@ Content-Type: application/json
 }
 
 ### TEST ~ SIGN-IN: ###
-POST /api/sign-in HTTP/1.1
+POST /api/users/sign-in HTTP/1.1
 Host: localhost:3000
 Content-Type: application/json
 
@@ -41,7 +41,7 @@ Content-Type: application/json
 }
 
 ### TEST ~ SIGN-IN: ###
-POST /api/sign-in HTTP/1.1
+POST /api/users/sign-in HTTP/1.1
 Host: localhost:3000
 Content-Type: application/json
 
@@ -53,6 +53,7 @@ Content-Type: application/json
 # ---------------------------
 
 ### TEST ~ AUTH ###
+# @no-cookie-jar
 GET /api/auth HTTP/1.1
 Host: localhost:3000
-Cookie: token=?; Secure; HttpOnly;
+Cookie: token=?

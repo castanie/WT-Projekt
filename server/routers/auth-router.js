@@ -15,19 +15,25 @@ const jwt_secret = crypto.randomBytes(32).toString("hex");
 const jwt_options = { algorithm: "HS256" };
 
 router.use("/api/auth", (req, res, next) => {
-    console.log("Cookies:", req.cookies);
-    next();
-});
-
-router.get("/api/auth", (req, res) => {
-    if (jwt.verify(req.cookies.token, jwt_secret)) {
+    console.log(req.cookies);
+    if (
+        jwt.verify(req.cookies.token, jwt_secret, (error, decoded) => {
+            return decoded;
+        })
+    ) {
+        // console.log("Auth!");
         res.status(200).send();
+        next();
     } else {
+        // console.log("NoAuth!");
         res.status(401).send();
+        next();
     }
 });
 
-router.post("/api/sign-up", (req, res) => {
+//--------//
+
+router.post("/api/users/sign-up", (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
 
@@ -52,17 +58,20 @@ router.post("/api/sign-up", (req, res) => {
                     username,
                     jwt_secret,
                     jwt_options
-                )}`,
+                )}; Path=/`, //; Secure; HttpOnly
             }).json({
                 message: `Completed SIGN-UP: <<${username}>> : <<${password}>>.`,
             });
         })
         .catch((error) => {
             console.error(`Failed SIGN-UP: <<${error}>>.`);
+            res.status(403).json({
+                message: error,
+            });
         });
 });
 
-router.post("/api/sign-in", (req, res) => {
+router.post("/api/users/sign-in", (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
 
@@ -81,7 +90,7 @@ router.post("/api/sign-in", (req, res) => {
                         username,
                         jwt_secret,
                         jwt_options
-                    )}`,
+                    )}; Path=/`, //; Secure; HttpOnly
                 }).json({
                     message: `Completed SIGN-IN: <<${username}>> : <<${password}>>.`,
                 });
@@ -91,6 +100,9 @@ router.post("/api/sign-in", (req, res) => {
         })
         .catch((error) => {
             console.error(`Failed SIGN-IN: <<${error}>>.`);
+            res.status(403).json({
+                message: error,
+            });
         });
 });
 

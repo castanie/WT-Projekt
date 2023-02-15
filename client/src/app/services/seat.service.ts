@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, of } from "rxjs";
-import { Seat } from "./seat.model";
+import { Seat } from "../models/seat.model";
 
 const SEAT_API = "http://localhost:4200/api/seats";
 const HTTP_OPTIONS = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
+    withCredentials: true,
 };
 
 @Injectable({

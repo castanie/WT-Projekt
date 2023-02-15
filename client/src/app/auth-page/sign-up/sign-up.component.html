@@ -1,0 +1,16 @@
+<form>
+    <label for="username">Username:</label>
+    <input type="text" name="username" [(ngModel)]="username" />
+    <br />
+    <!-- <label for="email">E-Mail:</label>
+    <input type="text" name="email" [(ngModel)]="email" />
+    <br /> -->
+    <label for="password_1">Password:</label>
+    <input type="password" name="password_1" [(ngModel)]="password_1" />
+    <br />
+    <label for="password_2">Password:</label>
+    <input type="password" name="password_2" [(ngModel)]="password_2" />
+    <p>{{ this.message }}</p>
+    <button (click)="onClick()">Sign Up</button>
+    <a [routerLink]="['/auth/sign-in']">Already have an account?</a>
+</form>

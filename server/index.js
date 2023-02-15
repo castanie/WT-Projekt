@@ -13,7 +13,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({ credentials: true }));
 app.use(express.static("static"));
 
 const port = 3000;

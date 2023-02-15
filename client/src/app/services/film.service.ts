@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, of } from "rxjs";
-import { Film } from "./film.model";
+import { Film } from "../models/film.model";
 
 const FILM_API = "http://localhost:4200/api/films";
 const HTTP_OPTIONS = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
+    withCredentials: true,
 };
 
 @Injectable({
