@@ -1,0 +1,14 @@
+<h1>Welcome back, {{ this.authService.username }}!</h1>
+<div class="ticket" *ngFor="let ticket of this.tickets">
+    <div>
+        <h2>{{ ticket.film }}</h2>
+        <p>Screen: {{ ticket.screen }}</p>
+        <p>Date: {{ ticket.date }}</p>
+        <p>Time: {{ ticket.time }}</p>
+    </div>
+    <qrcode
+        [qrdata]="ticket.date + this.authService.username"
+        [width]="360"
+        [errorCorrectionLevel]="'M'"
+    ></qrcode>
+</div>

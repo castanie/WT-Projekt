@@ -1,12 +1,12 @@
 import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AuthPageModule } from "./auth-page/auth-page.module";
 import { FilmPageModule } from "./film-page/film-page.module";
 import { HomePageModule } from "./home-page/home-page.module";
+import { UserPageModule } from "./user-page/user-page.module";
 
 @NgModule({
     declarations: [AppComponent],
@@ -17,6 +17,7 @@ import { HomePageModule } from "./home-page/home-page.module";
         FilmPageModule,
         HomePageModule,
         HttpClientModule,
+        UserPageModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

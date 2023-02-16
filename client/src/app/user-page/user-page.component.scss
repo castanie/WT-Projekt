@@ -1,0 +1,23 @@
+.ticket {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: 2px solid black;
+
+    h2 {
+        font-size: 2rem;
+    }
+}
+
+qrcode {
+    margin-left: auto;
+}
+
+@media only screen and (max-width: 600px) {
+    qrcode {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
