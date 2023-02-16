@@ -38,7 +38,7 @@ app.get("/api/test", (req, res) => {
             });
         })
         .catch((error) => {
-            console.error("Failed whatever.");
+            console.error(error);
         });
 });
 

@@ -4,5 +4,4 @@ export interface Show {
     film?: number;
     date?: string;
     time?: string;
-    cancelled?: boolean;
 }

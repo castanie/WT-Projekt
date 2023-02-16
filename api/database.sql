@@ -38,7 +38,6 @@ INSERT INTO seats VALUES (1, 'A6', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'A7', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'A8', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'A9', FALSE, FALSE);
-INSERT INTO seats VALUES (1, 'A10', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'B1', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'B2', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'B3', FALSE, FALSE);
@@ -48,7 +47,6 @@ INSERT INTO seats VALUES (1, 'B6', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'B7', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'B8', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'B9', FALSE, FALSE);
-INSERT INTO seats VALUES (1, 'B10', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'C1', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'C2', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'C3', FALSE, FALSE);
@@ -58,7 +56,6 @@ INSERT INTO seats VALUES (1, 'C6', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'C7', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'C8', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'C9', FALSE, FALSE);
-INSERT INTO seats VALUES (1, 'C10', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'D1', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'D2', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'D3', FALSE, FALSE);
@@ -68,7 +65,6 @@ INSERT INTO seats VALUES (1, 'D6', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'D7', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'D8', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'D9', FALSE, FALSE);
-INSERT INTO seats VALUES (1, 'D10', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'E1', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'E2', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'E3', FALSE, FALSE);
@@ -78,7 +74,34 @@ INSERT INTO seats VALUES (1, 'E6', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'E7', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'E8', FALSE, FALSE);
 INSERT INTO seats VALUES (1, 'E9', FALSE, FALSE);
-INSERT INTO seats VALUES (1, 'E10', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'A1', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'A2', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'A3', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'A4', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'A5', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'A6', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'A7', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'B1', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'B2', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'B3', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'B4', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'B5', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'B6', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'B7', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'C1', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'C2', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'C3', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'C4', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'C5', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'C6', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'C7', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'D1', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'D2', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'D3', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'D4', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'D5', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'D6', FALSE, FALSE);
+INSERT INTO seats VALUES (2, 'D7', FALSE, FALSE);
 
 --------------------
 -- FILMS (TABLE): --
@@ -98,11 +121,11 @@ INSERT INTO films VALUES ('the-whale', 'The Whale', 'A reclusive English teacher
 -- SHOWS (TABLE): --
 --------------------
 
-CREATE TABLE shows (id SERIAL, screen INTEGER REFERENCES screens(id), film TEXT REFERENCES films(id), "date" DATE, "time" TIME(0), cancelled BOOLEAN, PRIMARY KEY (id));
-INSERT INTO shows VALUES (DEFAULT, 1, 'aftersun', NOW()::date, NOW()::time + '01:00:00', FALSE);
-INSERT INTO shows VALUES (DEFAULT, 2, 'aftersun', NOW()::date, NOW()::time + '03:00:00', FALSE);
-INSERT INTO shows VALUES (DEFAULT, 1, 'aftersun', NOW()::date, NOW()::time + '04:00:00', FALSE);
-INSERT INTO shows VALUES (DEFAULT, 2, 'aftersun', NOW()::date, NOW()::time + '06:00:00', TRUE);
+CREATE TABLE shows (id SERIAL, screen INTEGER REFERENCES screens(id), film TEXT REFERENCES films(id), "date" DATE, "time" TIME(0), PRIMARY KEY (id));
+INSERT INTO shows VALUES (DEFAULT, 1, 'aftersun', NOW()::date, NOW()::time + '01:00:00');
+INSERT INTO shows VALUES (DEFAULT, 2, 'aftersun', NOW()::date, NOW()::time + '03:00:00');
+INSERT INTO shows VALUES (DEFAULT, 1, 'aftersun', NOW()::date, NOW()::time + '04:00:00');
+INSERT INTO shows VALUES (DEFAULT, 2, 'aftersun', NOW()::date, NOW()::time + '06:00:00');
 
 --------------------
 -- USERS (TABLE): --
@@ -112,6 +135,8 @@ CREATE TABLE users (username VARCHAR(63), passhash VARCHAR(63), PRIMARY KEY (use
 INSERT INTO users VALUES ('admin', 'admin');
 INSERT INTO users VALUES ('user1', 'user1');
 INSERT INTO users VALUES ('user2', 'user2');
+INSERT INTO users VALUES ('user3', 'user3');
+INSERT INTO users VALUES ('user4', 'user4');
 
 ----------------------
 -- TICKETS (TABLE): --
@@ -125,6 +150,8 @@ INSERT INTO tickets VALUES (DEFAULT, 'user2', 3, FALSE);
 -- REVIEWS (TABLE): --
 ----------------------
 
-CREATE TABLE reviews ("user" VARCHAR(63) REFERENCES users(username), film TEXT REFERENCES films(id), stars SMALLINT, review TEXT, CHECK (stars BETWEEN 1 AND 5), PRIMARY KEY ("user", film));
-INSERT INTO reviews VALUES ('user1', 'aftersun', 5, 'Review!');
-INSERT INTO reviews VALUES ('user2', 'aftersun', 4, 'Review?');
+CREATE TABLE reviews ("user" VARCHAR(63) REFERENCES users(username), film TEXT REFERENCES films(id), rating SMALLINT, review TEXT, CHECK (rating BETWEEN 1 AND 5), PRIMARY KEY ("user", film));
+INSERT INTO reviews VALUES ('user1', 'aftersun', 5, 'Loved it! So dreamy!');
+INSERT INTO reviews VALUES ('user2', 'aftersun', 4, 'Good movie, worth a watch if you like the aesthetic.');
+INSERT INTO reviews VALUES ('user3', 'aftersun', 2, 'Absolut garbage, don''t bother...');
+INSERT INTO reviews VALUES ('user4', 'aftersun', 3, 'It was alright, but critics are playing it too high.');

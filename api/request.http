@@ -20,6 +20,18 @@ Host: localhost:3000
 
 # ---------------------------
 
+### TEST ~ TICKETS: ###
+GET /api/tickets?user=user1 HTTP/1.1
+Host: localhost:3000
+
+# ---------------------------
+
+### TEST ~ SEATS: ###
+GET /api/screens/1/seats HTTP/1.1
+Host: localhost:3000
+
+# ---------------------------
+
 ### TEST ~ SIGN-UP: ###
 POST /api/users/sign-up HTTP/1.1
 Host: localhost:3000

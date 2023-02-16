@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Show } from "src/app/models/show.model";
-import { ShowService } from "src/app/services/show.service";
+import { FilmService } from "src/app/services/film.service";
 
 @Component({
     selector: "app-show-picker",
@@ -18,20 +18,20 @@ export class ShowPickerComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private showService: ShowService
+        private filmService: FilmService
     ) {}
 
     ngOnInit(): void {
         this.route.params.subscribe((params) => {
             this.film = params["id"];
         });
-        this.getShows();
         this.show = { id: 1 };
         this.date = new Date().toISOString().slice(0, 10);
+        this.getShows();
     }
 
     getShows(): void {
-        this.showService
+        this.filmService
             .getShows(this.film, this.date)
             .subscribe((shows: Show[]) => (this.shows = shows));
     }
