@@ -8,10 +8,9 @@ const pool = require("../database");
 //--------//
 
 router.get("/api/screens/:screen/seats", (req, res) => {
-    pool.query(
-        "SELECT * FROM seats WHERE screen = $1 ORDER BY id",
-        [req.params.screen]
-    )
+    pool.query("SELECT * FROM seats WHERE screen = $1 ORDER BY id", [
+        req.params.screen,
+    ])
         .then((result) => {
             res.json(result.rows);
         })

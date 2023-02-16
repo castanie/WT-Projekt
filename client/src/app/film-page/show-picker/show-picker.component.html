@@ -2,7 +2,7 @@
     <div class="show-picker-dates x-scrollable">
         <h2
             id="{{ getISODate(date) }}"
-            class="clickable"
+            class="deselected clickable"
             (click)="onDate($event)"
             *ngFor="let date of this.dates"
         >
@@ -13,6 +13,23 @@
     <hr />
 
     <div class="show-picker-times x-scrollable">
-        <h3 *ngFor="let show of this.shows">{{ show.time }}</h3>
+        <h3
+            id="{{ show.screen }}"
+            class="deselected clickable"
+            (click)="onShow($event)"
+            *ngFor="let show of this.shows"
+        >
+            {{ show.time }}
+        </h3>
+    </div>
+</div>
+
+<div class="seats-grid x-scrollable">
+    <div
+        class="deselected clickable"
+        (click)="onSeat($event)"
+        *ngFor="let seat of this.seats"
+    >
+        {{ seat.id }}
     </div>
 </div>

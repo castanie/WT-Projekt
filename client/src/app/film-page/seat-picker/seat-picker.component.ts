@@ -20,12 +20,12 @@ export class SeatPickerComponent implements OnInit {
         this.route.params.subscribe((params) => {
             this.seats = params["id"];
         });
-        this.getSeats();
+        // this.getSeats();
     }
 
-    getSeats(): void {
-        this.seatService
-            .getSeats()
-            .subscribe((seats: Seat[]) => (this.seats = seats));
-    }
+    // getSeats(): void {
+    //     this.seatService
+    //         .getSeats()
+    //         .subscribe((seats: Seat[]) => (this.seats = seats));
+    // }
 }

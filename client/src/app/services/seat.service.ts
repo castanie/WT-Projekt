@@ -5,7 +5,7 @@ import { Seat } from "../models/seat.model";
 import { Ticket } from "../models/ticket.model";
 import { AuthService } from "./auth.service";
 
-const SCREEN_API = "http://localhost:4200/api/seats";
+const SCREEN_API = "http://localhost:4200/api/screens";
 const TICKET_API = "http://localhost:4200/api/tickets";
 const HTTP_OPTIONS = {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
