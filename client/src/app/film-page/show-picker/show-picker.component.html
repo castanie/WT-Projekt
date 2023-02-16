@@ -1,5 +1,5 @@
 <div class="show-picker">
-    <div class="show-picker-dates">
+    <div class="show-picker-dates x-scrollable">
         <h2
             id="{{ getISODate(date) }}"
             class="clickable"
@@ -12,7 +12,7 @@
 
     <hr />
 
-    <div class="show-picker-times">
+    <div class="show-picker-times x-scrollable">
         <h3 *ngFor="let show of this.shows">{{ show.time }}</h3>
     </div>
 </div>

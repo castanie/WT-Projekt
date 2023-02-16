@@ -25,3 +25,11 @@ hr {
 .clickable {
     cursor: pointer;
 }
+
+.x-scrollable {
+    overflow-x: auto;
+}
+
+.y-scrollable {
+    overflow-y: auto;
+}

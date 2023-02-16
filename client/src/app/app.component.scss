@@ -3,13 +3,13 @@
 nav {
     // Layout:
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     // Alignment:
     align-items: center;
     justify-content: center;
     text-align: center;
     // Padding:
-    padding-top: 1rem;
+    padding-top: 1.5rem;
     padding-bottom: 1rem;
 
     .logo {
@@ -19,5 +19,17 @@ nav {
 
     .link {
         font: 2rem "Bebas Neue";
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    nav {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        .logo {
+            grid-column: 1 / 4;
+            margin-bottom: 1.5rem;
+        }
     }
 }

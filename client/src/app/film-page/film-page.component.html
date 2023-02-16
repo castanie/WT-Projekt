@@ -1,15 +1,25 @@
-<div class="film-page-film">
+<div class="film-container x-scrollable">
     <img
         src="http://localhost:4200/api/films/{{ this.film.id }}/Poster.jfif"
         alt="Poster"
     />
-    <div class="film-page-details">
+    <div class="detail-container">
         <h1>{{ this.film.title }}</h1>
         <p>{{ this.film.synopsis }}</p>
     </div>
-    <div class="film-page-reviews">
+    <div class="review-container">
         <h1>Reviews</h1>
-        <!-- <div *ngFor="let review of this.reviews"></div> -->
+        <div class="y-scrollable">
+            <div *ngFor="let review of this.reviews">
+                <h4>{{ review.user }}</h4>
+                <p>
+                    {{ review.review }} -
+                    {{ "\u2605".repeat(review.rating || 0) }}
+                </p>
+                <hr />
+            </div>
+        </div>
+        <!-- ... -->
         <div
             *ngIf="this.authService.isSignedIn; then thenBlock; else elseBlock"
         ></div>
@@ -60,7 +70,7 @@
                     [(ngModel)]="review"
                 ></textarea>
                 <!-- <p>{{ this.remaining }}</p> -->
-                <button type="submit" (click)="onClick()">Post</button>
+                <button type="submit" (click)="onReview()">Post</button>
             </form>
         </ng-template>
         <ng-template #elseBlock>

@@ -1,23 +1,26 @@
-.show-seats {
+$seat: 3rem;
+
+.seats-grid {
     display: grid;
-    grid-template-columns: repeat(12, 3rem);
+    grid-template-columns: repeat(12, $seat);
     column-gap: 0.5rem;
     row-gap: 0.25rem;
-    margin: 290px 550px 290px 550px;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
 }
 
 .seat {
     font-family: "Bebas Neue";
     font-size: 1.5rem;
-    width: 3rem;
-    height: 3rem;
+    width: $seat;
+    height: $seat;
     border: 2px solid black;
-    // border-radius: 1.5rem;
-    line-height: 3rem;
+    line-height: $seat;
     text-align: center;
 }
 
 .empty {
-    width: 3rem;
-    height: 3rem;
+    width: $seat;
+    height: $seat;
 }

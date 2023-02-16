@@ -1,8 +1,24 @@
 :host {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    column-gap: 0.5rem;
+
+    img {
+        width: calc(25vw - 1rem);
+    }
 }
 
 h3 {
     font-size: 1.5rem;
+}
+
+@media only screen and (max-width: 400px) {
+    :host {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        img {
+            width: calc(50vw - 1rem);
+        }
+    }
 }

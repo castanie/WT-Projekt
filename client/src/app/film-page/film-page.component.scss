@@ -1,14 +1,26 @@
-.film-page-film {
+.film-container {
     display: grid;
     grid-template-columns: auto auto auto;
     column-gap: 2rem;
 }
 
-.film-page-reviews {
+.review-container {
+    display: grid;
     border: 2px solid black;
     padding-left: 1rem;
     padding-right: 1rem;
     width: 300px;
+    height: calc(100vh - 7.875rem);
+
+    > div {
+        border-top: 2px solid black;
+        border-bottom: 2px solid black;
+    }
+
+    a {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
 }
 
 img {
@@ -19,7 +31,7 @@ p {
     text-align: justify;
 }
 
-// Rating (@Kate Rose Morley, https://iamkate.com/code/star-rating-widget/):
+// Rating-Input (@Kate Rose Morley, https://iamkate.com/code/star-rating-widget/):
 
 .rating {
     display: flex;
@@ -48,10 +60,25 @@ p {
     }
 }
 
-// Review:
+// Review-Input:
 
 .review {
     font-family: inherit;
     resize: none;
     width: calc(100% - 5px);
+}
+
+@media only screen and (max-width: 500px) {
+    img {
+        width: calc(100vw - 1rem);
+        height: auto;
+    }
+
+    p {
+        width: calc(100vw - 3rem);
+    }
+
+    .review-container {
+        width: calc(100vw - 3.25rem);
+    }
 }
