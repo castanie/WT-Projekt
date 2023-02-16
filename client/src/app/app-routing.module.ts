@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthPageComponent } from "./auth-page/auth-page.component";
-
 import { SignInComponent } from "./auth-page/sign-in/sign-in.component";
 import { SignUpComponent } from "./auth-page/sign-up/sign-up.component";
 import { FilmPageComponent } from "./film-page/film-page.component";
 import { HomePageComponent } from "./home-page/home-page.component";
+import { UserPageComponent } from "./user-page/user-page.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "films", pathMatch: "full" },
@@ -19,6 +19,7 @@ const routes: Routes = [
             { path: "sign-in", component: SignInComponent },
         ],
     },
+    { path: "dashboard", component: UserPageComponent },
 ];
 
 @NgModule({
