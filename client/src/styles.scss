@@ -26,6 +26,14 @@ hr {
     cursor: pointer;
 }
 
+.selected {
+    color: #00f;
+}
+
+.deselected {
+    color: #000;
+}
+
 .x-scrollable {
     overflow-x: auto;
 }
