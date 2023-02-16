@@ -5,6 +5,6 @@
     <label for="password">Password:</label>
     <input type="password" name="password" [(ngModel)]="password" />
     <p>{{ this.message }}</p>
-    <button (click)="onClick()">Sign In</button>
+    <button type="submit" (click)="onClick()">Sign In</button>
     <a [routerLink]="['/auth/sign-up']">Don't have an account yet?</a>
 </form>

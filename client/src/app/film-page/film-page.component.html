@@ -10,6 +10,62 @@
     <div class="film-page-reviews">
         <h1>Reviews</h1>
         <!-- <div *ngFor="let review of this.reviews"></div> -->
+        <div
+            *ngIf="this.authService.isSignedIn; then thenBlock; else elseBlock"
+        ></div>
+        <ng-template #thenBlock>
+            <form>
+                <span class="rating">
+                    <input
+                        type="radio"
+                        id="1"
+                        name="rating"
+                        value="1"
+                        [(ngModel)]="rating"
+                    /><label for="1"></label>
+                    <input
+                        type="radio"
+                        id="2"
+                        name="rating"
+                        value="2"
+                        [(ngModel)]="rating"
+                    /><label for="2"></label>
+                    <input
+                        type="radio"
+                        id="3"
+                        name="rating"
+                        value="3"
+                        [(ngModel)]="rating"
+                    /><label for="3"></label>
+                    <input
+                        type="radio"
+                        id="4"
+                        name="rating"
+                        value="4"
+                        [(ngModel)]="rating"
+                    /><label for="4"></label>
+                    <input
+                        type="radio"
+                        id="5"
+                        name="rating"
+                        value="5"
+                        [(ngModel)]="rating"
+                    /><label for="5"></label>
+                </span>
+                <textarea
+                    class="review"
+                    name="review"
+                    placeholder="Tell the world your thoughts!"
+                    rows="5"
+                    [(ngModel)]="review"
+                ></textarea>
+                <!-- <p>{{ this.remaining }}</p> -->
+                <button type="submit" (click)="onClick()">Post</button>
+            </form>
+        </ng-template>
+        <ng-template #elseBlock>
+            <a [routerLink]="['/auth/sign-up']">Don't have an account yet?</a>
+        </ng-template>
     </div>
 </div>
 
@@ -17,5 +73,5 @@
 
 <!-- ... -->
 
-<app-show-picker id="there"></app-show-picker>
-<app-seat-picker></app-seat-picker>
+<app-show-picker id="film-page-shows"></app-show-picker>
+<app-seat-picker id="film-page-seats"></app-seat-picker>

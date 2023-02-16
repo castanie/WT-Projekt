@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Film } from "../models/film.model";
+import { AuthService } from "../services/auth.service";
 import { FilmService } from "../services/film.service";
 
 @Component({
@@ -10,9 +11,12 @@ import { FilmService } from "../services/film.service";
 })
 export class FilmPageComponent implements OnInit {
     protected film!: Film;
+    protected rating!: number;
+    protected review!: string;
 
     constructor(
         private route: ActivatedRoute,
+        protected authService: AuthService,
         private filmService: FilmService
     ) {}
 
@@ -23,6 +27,10 @@ export class FilmPageComponent implements OnInit {
             };
         });
         this.getFilm();
+    }
+
+    onClick(): void {
+        console.log(`Posted review: <<${this.rating}>> - <<${this.review}>>`);
     }
 
     getFilm(): void {

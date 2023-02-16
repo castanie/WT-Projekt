@@ -7,6 +7,7 @@
 .film-page-reviews {
     border: 2px solid black;
     padding-left: 1rem;
+    padding-right: 1rem;
     width: 300px;
 }
 
@@ -16,4 +17,41 @@ img {
 
 p {
     text-align: justify;
+}
+
+// Rating (@Kate Rose Morley, https://iamkate.com/code/star-rating-widget/):
+
+.rating {
+    display: flex;
+
+    & input {
+        position: absolute;
+        left: -100vw;
+    }
+
+    & label {
+        width: 1.5rem;
+        height: 1.5rem;
+        overflow: hidden;
+        background: url("/assets/stars.svg") no-repeat top left;
+        background-size: 4.5rem;
+    }
+
+    &:not(:hover) input:indeterminate + label,
+    &:not(:hover) input:checked ~ input + label,
+    & input:hover ~ input + label {
+        background-position: -1.5rem 0;
+    }
+
+    &:not(:hover) input:focus-visible + label {
+        background-position: -3rem 0;
+    }
+}
+
+// Review:
+
+.review {
+    font-family: inherit;
+    resize: none;
+    width: calc(100% - 5px);
 }
