@@ -21,9 +21,10 @@ export class SignUpComponent {
         );
         if (this.password_1 == this.password_2) {
             this.authService
-                .postSignIn(this.username, this.password_1)
+                .postSignUp(this.username, this.password_1)
                 .subscribe({
                     next: (value) => {
+                        this.authService.username = this.username;
                         this.authService.isSignedIn = true;
                         this.router.navigate(["/"]);
                     },

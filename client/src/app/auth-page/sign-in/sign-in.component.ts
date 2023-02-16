@@ -18,6 +18,7 @@ export class SignInComponent {
         console.log(`${this.username} : ${this.password}`);
         this.authService.postSignIn(this.username, this.password).subscribe({
             next: (result) => {
+                this.authService.username = this.username;
                 this.authService.isSignedIn = true;
                 this.router.navigate(["/"]);
             },

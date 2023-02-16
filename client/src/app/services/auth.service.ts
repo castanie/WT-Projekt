@@ -14,14 +14,21 @@ const HTTP_OPTIONS = {
     providedIn: "root",
 })
 export class AuthService {
+    public username!: string;
     public isSignedIn = false;
 
     constructor(private http: HttpClient) {}
 
     public postAuth(): void {
-        this.http.post(`${AUTH_API}`, {}, HTTP_OPTIONS).subscribe({
-            next: (value) => (this.isSignedIn = true),
-            error: (error) => (this.isSignedIn = false),
+        this.http.post<any>(`${AUTH_API}`, {}, HTTP_OPTIONS).subscribe({
+            next: (value) => {
+                this.username = value!.body!.username;
+                this.isSignedIn = true;
+            },
+            error: (error) => {
+                this.username = "";
+                this.isSignedIn = false;
+            },
         });
         // .pipe(catchError(this.handleError<any>([])));
     }

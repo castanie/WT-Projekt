@@ -16,16 +16,15 @@ const jwt_options = { algorithm: "HS256" };
 
 router.use("/api/auth", (req, res, next) => {
     console.log(req.cookies);
+    let username;
     if (
         jwt.verify(req.cookies.token, jwt_secret, (error, decoded) => {
-            return decoded;
+            return (username = decoded);
         })
     ) {
-        // console.log("Auth!");
-        res.status(200).send();
+        res.status(200).json({ username: username });
         next();
     } else {
-        // console.log("NoAuth!");
         res.status(401).send();
         next();
     }
