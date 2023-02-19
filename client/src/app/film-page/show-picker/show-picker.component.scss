@@ -9,12 +9,14 @@
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     color: inherit;
+    border-color: inherit;
 }
 
 .show-picker-times {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     color: inherit;
+    border-color: inherit;
 }
 
 h2 {
@@ -49,7 +51,10 @@ $seat: 3rem;
     font-size: 1.5rem;
     width: $seat;
     height: $seat;
-    border: 2px solid black;
+    border-width: 2px;
+    border-style: solid;
+    border-color: inherit;
+    // border: 2px solid black;
     line-height: $seat;
     text-align: center;
 }

@@ -71,13 +71,15 @@ export class ShowPickerComponent implements OnInit {
     }
 
     onSeat(event: Event): void {
+        // let className = (event.target as HTMLElement).className;
         let seat = (event.target as HTMLElement).id;
         if (this.order.includes(seat)) {
             this.order.splice(this.order.indexOf(seat), 1);
-            (event.target as HTMLElement).className = "deselected clickable";
+            (event.target as HTMLElement).className =
+                "seat deselected clickable";
         } else {
             this.order.push(seat);
-            (event.target as HTMLElement).className = "selected clickable";
+            (event.target as HTMLElement).className = "seat selected clickable";
         }
     }
 
@@ -97,6 +99,7 @@ export class ShowPickerComponent implements OnInit {
         let day = (date.getDate() + 0).toString().padStart(2, "0");
         let month = (date.getMonth() + 1).toString().padStart(2, "0");
 
-        return `${name}\n${month}/${day}`;
+        // return `${name}\n${month}/${day}`;
+        return `${name}`;
     }
 }
